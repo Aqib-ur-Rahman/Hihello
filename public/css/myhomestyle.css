@@ -1,0 +1,137 @@
+body {
+    --secondary-color: #57e6ff;
+    --primary-color: #0b192f;
+    --navbar-btn-bg-color: #0b192f;
+    --navbar-btn-color: #57e6ff;
+}
+
+.nav-other-items {
+    margin-left: auto;
+}
+
+.nav-item {
+    margin: 10px;
+}
+
+.nav-link {
+    border-radius: 7px;
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+.nav-link:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    /* border: 1px solid var(--primary-color); */
+}
+
+.navbar-brand {
+    /* color: var(--secondary-color); */
+    font-size: 1.5em;
+}
+
+.mynavbar {
+    position: fixed;
+    width: 100%;
+    /* border-radius: 10px; */
+    /* background-color: #00ffd5; */
+    background-color: #57e6ff;
+}
+
+.row1 {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.row {
+    height: auto;
+    padding: 8% 12%;
+}
+
+.dark-btn {
+    background-color: var(--navbar-btn-bg-color);
+    color: var(--navbar-btn-color);
+    font-size: 0.9em;
+}
+
+.dark-btn:hover {
+    background-color: var(--navbar-btn-color);
+    color: var(--navbar-btn-bg-color);
+    border: 1px solid var(--navbar-btn-bg-color);
+}
+
+.light-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.light-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+}
+
+.dark-bg-btn {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.dark-bg-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+body {
+    font-size: 1.2em;
+}
+
+.intro-1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.row1 {
+    padding-top: 200px;
+}
+
+.col-4 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.up-title {
+    font-size: 0.8em;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.dgcard-title {
+    font-size: 3em;
+    font-weight: medium;
+}
+
+.dgcard-btn {
+    width: 180px;
+    margin: 0px 20px;
+}
+
+.row5 {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.dg-card-img {
+    text-align: center;
+}
+
+.middle-style {
+    padding: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
