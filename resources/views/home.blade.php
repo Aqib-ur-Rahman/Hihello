@@ -151,4 +151,10 @@
             crossorigin="anonymous"></script>
 </body>
 
+@if (session('logOutError'))
+<script>alert('Logout Error: {{ session('logOutError') }}')</script>
+@elif (session('logOutSuccess'))
+<script>alert('Logout Success: {{ session('logOutSuccess') }}')</script>
+@endif
+
 </html>

@@ -108,3 +108,22 @@ input[type='checkbox'] {
 .home-redirect {
     cursor: pointer;
 }
+
+.con-google {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.con-google label {
+    background-color: transparent;
+    color: var(--secondary-color);
+}
+
+.con-google * {
+    display: inline;
+    cursor: pointer;
+}

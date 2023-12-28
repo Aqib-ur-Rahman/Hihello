@@ -59,6 +59,18 @@ class MyController extends Controller
         $request->session()->forget('email');
         $request->session()->forget('name');
 
-        return redirect('/home')->with('loggedOut', 'Log out successful.');
+        return redirect('/home')->with('logOutSuccess', 'Log out is successful.');
     }
+
+    
+    public function xmlhttprequest() {
+        $searchTerm = request('search');
+        
+        if (strlen($searchTerm) > 0) {
+            $searchResults = MyUser::where('name', 'like', $searchTerm . '%')->get();
+        }
+    
+        return response()->json($searchResults);
+    }
+    
 }

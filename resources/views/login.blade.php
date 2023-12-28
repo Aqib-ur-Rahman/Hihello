@@ -42,6 +42,11 @@
                 <p class="create-account" onclick="window.location.href='/signup'">No account? Create one.</p>
             </div>
 
+            <div class="con-google" onclick="window.location.href='{{ route('google.signup') }}'">
+                <img src="images/google.png" alt="Google" width="50px" height="50px">
+                <label class="google-label">Continue with Google</label>
+            </div>
+
         </div>
     </form>
 

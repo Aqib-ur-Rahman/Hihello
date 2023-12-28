@@ -18,7 +18,8 @@
 
         <div class="container">
             <div class="logo-container">
-                <img class="home-redirect" src="images/hihello.png" width="70px" height="70px" alt="image" onclick="window.location.href='/home'">
+                <img class="home-redirect" src="images/hihello.png" width="70px" height="70px" alt="image"
+                    onclick="window.location.href='/home'">
                 <h1 class="logo-text home-redirect" onclick="window.location.href='/home'">HiHello</h1>
             </div>
             <div class="description">
@@ -58,6 +59,12 @@
                 <p class="already-account" onclick="window.location.href='/login'">Already have an account? Login here.
                 </p>
             </div>
+
+            <div class="con-google" onclick="window.location.href='{{ route('google.signup') }}'">
+                <img src="images/google.png" alt="Google" width="50px" height="50px">
+                <label class="google-label">Continue with Google</label>
+            </div>
+
 
         </div>
     </form>

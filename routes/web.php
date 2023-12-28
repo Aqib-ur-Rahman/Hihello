@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MyController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,7 @@ Route::get('/home', function () {
 Route::get('/signup', function () {
     // return view('signup');
     if (Session::has('id') && Session::has('email')) {
-        return view('main');
+        return redirect('main');
     }
     else {
         return view('/signup');
@@ -36,7 +38,7 @@ Route::post('/signup', 'App\Http\Controllers\MyController@createAccount');
 Route::get('/login', function () {
     // return view('login');
     if (Session::has('id') && Session::has('email')) {
-        return view('main');
+        return redirect('main');
     }
     else {
         return view('/login');
@@ -54,4 +56,14 @@ Route::get('/main', function () {
     }
 });
 
-Route::get('/logout', 'App\Http\Controllers\MyController@logout');
+Route::get('/logout', [MyController::class,'logout']);
+ 
+Route::get('auth/redirect', [AuthController::class,'redirectToGoogle'])->name('google.signup');
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
+
+Route::get('/search', function() {
+    return view('search');
+});
+
+Route::get('/request', 'App\Http\Controllers\MyController@xmlhttprequest');
