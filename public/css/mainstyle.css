@@ -192,3 +192,8 @@ a {
         padding-left: calc(var(--nav-width) + 188px);
     }
 }
+
+#contacts-div {
+    border: 1px solid var(--secondary-color);
+    padding: 10px;
+}

@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 // add padding to header
                 headerpd.classList.toggle('body-pd')
             })
+
+            // Trigger the click event to open the navbar by default
+            toggle.click();
         }
     }
 
@@ -40,6 +43,41 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // Own methods
 function confirmLogOut() {
     if (confirm('Are you sure you want to log out?')) {
-        window.location.href = '/logout';
+        window.location.href = '/user-logout';
     }
+}
+
+document.getElementById('retrieve-btn').addEventListener('click', retrieveContacts);
+const contentDiv = document.getElementById('contacts-div');
+
+function retrieveContacts() {
+    // Make an AJAX request to your server endpoint
+    var xhttpReq = new XMLHttpRequest();
+
+    var url = "/retrieve-contacts";
+    xhttpReq.open('GET', url);
+    xhttpReq.send();
+    alert("Request sent. Waiting for response from server.");
+
+    xhttpReq.onreadystatechange = function () {
+        if (xhttpReq.readyState == 4 && xhttpReq.status == 200) {
+            // const JSONResponse = JSON.parse(xhttpReq.responseText);
+
+            // for (let item in JSONResponse) {
+            //     contentDiv.innerHTML += JSONResponse[item].name + "<br>";
+            //     contentDiv.innerHTML += JSONResponse[item].email + "<hr>";
+            //     console.log(JSONResponse[item].name);
+            //     console.log(JSONResponse[item].email);
+            //     console.log("----------------");
+            // }
+
+            // alert('Success: ' + JSONResponse);
+
+            contentDiv.innerText = xhttpReq.responseText;
+            
+        }
+        else {
+            // alert('Error Response: \nStatus: ' + xhttpReq.status + "\nStatusText: " + xhttpReq.statusText + "\nReadyState: " + xhttpReq.readyState);
+        }
+    };
 }

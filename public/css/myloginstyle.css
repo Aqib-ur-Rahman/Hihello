@@ -48,6 +48,7 @@ label {
     font-size: 1.2em;
     width: 100%;
     color: var(--secondary-color);
+    text-align: center;
 }
 
 input {

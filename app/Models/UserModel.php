@@ -10,5 +10,9 @@ class UserModel extends AuthenticatableUser implements Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $fillable = [
+        'name', 'email', 'avatar', 'google_token', 'google_refresh_token',
+    ];
+
     public $timestamps = false;
 }

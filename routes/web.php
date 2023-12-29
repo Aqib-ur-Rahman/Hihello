@@ -17,12 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 Route::get('/home', function () {
     return view('home');
 });
+
+// ------------ <Deprecated> ---------------------- 
+/*
 
 Route::get('/signup', function () {
     // return view('signup');
@@ -35,8 +38,19 @@ Route::get('/signup', function () {
 });
 Route::post('/signup', 'App\Http\Controllers\MyController@createAccount');
 
+*/
+// ------------ </Deprecated> ----------------------
+
+Route::get('/signup', function() {
+    if (Session::has('id') && Session::has('email')) {
+        return redirect('main');
+    }
+    else {
+        return view('/login');
+    }
+});
+
 Route::get('/login', function () {
-    // return view('login');
     if (Session::has('id') && Session::has('email')) {
         return redirect('main');
     }
@@ -56,9 +70,16 @@ Route::get('/main', function () {
     }
 });
 
-Route::get('/logout', [MyController::class,'logout']);
+Route::get('/user-logout', 'App\Http\Controllers\AuthController@logout');
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/retrieve-contacts', 'App\Http\Controllers\AuthController@retrieveGoogleContacts');
+
  
-Route::get('auth/redirect', [AuthController::class,'redirectToGoogle'])->name('google.signup');
+Route::get('auth/redirect', [AuthController::class,'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
 
@@ -67,3 +88,7 @@ Route::get('/search', function() {
 });
 
 Route::get('/request', 'App\Http\Controllers\MyController@xmlhttprequest');
+
+Route::get('/index', function() {
+    return view('index');
+});

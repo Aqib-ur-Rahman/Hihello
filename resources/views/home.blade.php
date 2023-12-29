@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+    
+@if (session('logOutError'))
+<script>alert('Logout Error')</script>
+@elif (session('logOutSuccess'))
+<script>alert('Logout Success')</script>
+@endif
 
 <head>
     <meta charset="UTF-8">
@@ -150,11 +156,5 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"></script>
 </body>
-
-@if (session('logOutError'))
-<script>alert('Logout Error: {{ session('logOutError') }}')</script>
-@elif (session('logOutSuccess'))
-<script>alert('Logout Success: {{ session('logOutSuccess') }}')</script>
-@endif
 
 </html>

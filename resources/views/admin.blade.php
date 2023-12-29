@@ -8,17 +8,13 @@
     <link rel="stylesheet" href="css/mainstyle.css">
     <link rel="icon" href="images/hihello.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>User Dashboard</title>
+    <title>Admin Dashboard</title>
 </head>
-
-@if (session('authUserNotFound'))
-<script>alert("Error: {{ session('authUserNotFound') }}")</script>
-@endif
 
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_img"> <img src="{{ session('avatar') }}" alt="User Avatar"> </div>
+        <div class="header_img"> <img src="images/hihello.png" alt=""> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
@@ -62,15 +58,11 @@
         </nav>
     </div>
 
-    <!-- <form> -->
-        <!--Container Main start-->
-        <div class="main-content">
-            <h4>Welcome {{ session('name') }},</h4>
-            <button id="retrieve-btn">Retrieve Contacts</button>
-            <div id="contacts-div"></div>
-        </div>
-        <!--Container Main end-->
-    <!-- </form> -->
+    <!--Container Main start-->
+    <div class="main-content">
+        <h4>Welcome Admin,</h4>
+    </div>
+    <!--Container Main end-->
 
 </body>
 

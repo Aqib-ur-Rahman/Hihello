@@ -39,6 +39,7 @@ class MyController extends Controller
                 session(['id' => $user->id]);
                 session(['email' => $user->email]);
                 session(['name' => $user->name]);
+                // session(['avatar' => $user->avatar]);
 
                 return redirect('/main');
 
@@ -52,12 +53,12 @@ class MyController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logoutUser(Request $request)
     {
-        
         $request->session()->forget('id');
         $request->session()->forget('email');
         $request->session()->forget('name');
+        $request->session()->forget('avatar');
 
         return redirect('/home')->with('logOutSuccess', 'Log out is successful.');
     }
