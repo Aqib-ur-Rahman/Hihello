@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MyController;
+use App\Http\Controllers\LogicController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
@@ -37,58 +37,46 @@ Route::get('/signup', function () {
     }
 });
 Route::post('/signup', 'App\Http\Controllers\MyController@createAccount');
+Route::post('/login', 'App\Http\Controllers\MyController@login');
 
 */
 // ------------ </Deprecated> ----------------------
 
-Route::get('/signup', function() {
-    if (Session::has('id') && Session::has('email')) {
-        return redirect('main');
-    }
-    else {
-        return view('/login');
-    }
+
+Route::get('/user-logout', [AuthController::class, 'logout']);
+Route::get('/retrieve-contacts', [AuthController::class, 'retrieveGoogleContacts']);
+
+Route::get('auth/redirect', [AuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
+Route::get('/main', [LogicController::class,'showMain']);
+Route::get('/request', [LogicController::class,'xmlhttprequest_search']);
+Route::get('/request-cards', [LogicController::class, 'xmlhttprequest_cards']);
+
+Route::get('/create-card', [LogicController::class, 'viewCreateCard']);
+Route::post('/create-card', [LogicController::class, 'createCard']);
+
+
+Route::get('/signup', function () {
+    return redirect('main');
 });
 
 Route::get('/login', function () {
-    if (Session::has('id') && Session::has('email')) {
-        return redirect('main');
-    }
-    else {
-        return view('/login');
-    }
+    return redirect('main');
 });
-
-Route::post('/login', 'App\Http\Controllers\MyController@login');
-
-Route::get('/main', function () {
-    if (Session::has('id') && Session::has('email')) {
-        return view('main');
-    }
-    else {
-        return redirect('/login')->with('loginError', 'Please log in to continue.');
-    }
-});
-
-Route::get('/user-logout', 'App\Http\Controllers\AuthController@logout');
 
 Route::get('/admin', function () {
     return view('admin');
 });
 
-Route::get('/retrieve-contacts', 'App\Http\Controllers\AuthController@retrieveGoogleContacts');
-
- 
-Route::get('auth/redirect', [AuthController::class,'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
-
-
-Route::get('/search', function() {
+Route::get('/search', function () {
     return view('search');
 });
 
-Route::get('/request', 'App\Http\Controllers\MyController@xmlhttprequest');
-
-Route::get('/index', function() {
+Route::get('/index', function () {
     return view('index');
+});
+
+Route::get('/newcard', function () {
+    return view('newcard');
 });

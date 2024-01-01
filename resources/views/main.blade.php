@@ -15,6 +15,10 @@
 <script>alert("Error: {{ session('authUserNotFound') }}")</script>
 @endif
 
+@if (session('cardCreationSuccessful'))
+<script>alert("Success: {{ session('cardCreationSuccessful') }}")</script>
+@endif
+
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
@@ -28,27 +32,32 @@
                     <span class="nav_logo-name">HiHello</span>
                 </a>
                 <div class="nav_list">
-                    <a href="#dashboard" class="nav_link active">
+                    <a href="#dashboard" class="nav_link active" id="dashboardNav">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
+                    
+                    <a href="#cards" class="nav_link" id="cardsNav">
+                        <i class='bx bx-credit-card nav_icon'></i>
+                        <span class="nav_name">Cards</span>
+                    </a>
 
-                    <a href="#contacts" class="nav_link">
+                    <a href="#contacts" class="nav_link" id="contactsNav">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">Contacts</span>
                     </a>
 
-                    <a href="#bookmarks" class="nav_link">
+                    <a href="#bookmarks" class="nav_link" id="bookmarksNav">
                         <i class='bx bx-bookmark nav_icon'></i>
                         <span class="nav_name">Bookmarks</span>
                     </a>
 
-                    <a href="#help" class="nav_link">
+                    <a href="#help" class="nav_link" id="helpNav">
                         <i class='bx bx-question-mark nav_icon'></i>
                         <span class="nav_name">Help Center</span>
                     </a>
 
-                    <a href="#settings" class="nav_link">
+                    <a href="#settings" class="nav_link" id="settingsNav">
                         <i class='bx bx-cog nav_icon'></i>
                         <span class="nav_name">Settings</span>
                     </a>
@@ -64,7 +73,7 @@
 
     <!-- <form> -->
         <!--Container Main start-->
-        <div class="main-content">
+        <div class="main-content" id="main-content" data-user-id="{{ Session::get('id') }}">
             <h4>Welcome {{ session('name') }},</h4>
             <button id="retrieve-btn">Retrieve Contacts</button>
             <div id="contacts-div"></div>
