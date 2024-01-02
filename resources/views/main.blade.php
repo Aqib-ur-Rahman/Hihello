@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/mainstyle.css">
     <link rel="icon" href="images/hihello.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-BpxGj6GwRip+HLDq5Vtdq4+XHQ9yQJ8GFnz2DqSyHdAgpTziIh2L76g4ti+f4jB1d2+prVwJ+o7pVk5kmGxjZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
     <title>User Dashboard</title>
 </head>
 
@@ -36,7 +38,7 @@
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    
+
                     <a href="#cards" class="nav_link" id="cardsNav">
                         <i class='bx bx-credit-card nav_icon'></i>
                         <span class="nav_name">Cards</span>
@@ -72,13 +74,23 @@
     </div>
 
     <!-- <form> -->
-        <!--Container Main start-->
-        <div class="main-content" id="main-content" data-user-id="{{ Session::get('id') }}">
-            <h4>Welcome {{ session('name') }},</h4>
-            <button id="retrieve-btn">Retrieve Contacts</button>
-            <div id="contacts-div"></div>
-        </div>
-        <!--Container Main end-->
+    <!--Container Main start-->
+    <div class="main-content" id="main-content" data-user-id="{{ Session::get('id') }}">
+        <h4>Welcome {{ session('name') }},</h4>
+        <button id="retrieve-btn">Retrieve Contacts</button>
+        <div id="contacts-div"></div>
+    </div>
+    <!--Container Main end-->
+
+    <div class="details-modal" id="details-modal">
+        <div><button id="close-button" class="bx bx-x"></button></div>
+        <h1>Share your card</h1>
+        <input type="text" value="Share link" id="text-to-copy" readonly>
+        <button id="copy-button" class="bx bx-copy">COPY</button>
+        <div id="copy-message-div"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
     <!-- </form> -->
 
 </body>

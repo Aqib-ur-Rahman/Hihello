@@ -52,10 +52,16 @@ Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback
 Route::get('/main', [LogicController::class,'showMain']);
 Route::get('/request', [LogicController::class,'xmlhttprequest_search']);
 Route::get('/request-cards', [LogicController::class, 'xmlhttprequest_cards']);
+Route::get('/request-contacts', [LogicController::class, 'xmlhttprequest_contacts']);
 
-Route::get('/create-card', [LogicController::class, 'viewCreateCard']);
-Route::post('/create-card', [LogicController::class, 'createCard']);
+Route::get('/create-personal-card', [LogicController::class, 'viewCreatePersonalCard']);
+Route::post('/create-personal-card', [LogicController::class, 'createPersonalCard']);
 
+Route::get('/create-work-card', [LogicController::class, 'viewCreateWorkCard']);
+Route::post('/create-work-card', [LogicController::class, 'createWorkCard']);
+
+Route::get('/create-contact', [LogicController::class, 'viewCreateContact']);
+Route::post('/create-contact', [LogicController::class, 'createContact']);
 
 Route::get('/signup', function () {
     return redirect('main');

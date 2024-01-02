@@ -24,7 +24,7 @@
             </div>
         
             <div class="description">
-                Please enter the details of new card 
+                Please enter the details of new contact 
             </div>
 
             <div>
