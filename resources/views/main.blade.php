@@ -85,10 +85,37 @@
     <div class="details-modal" id="details-modal">
         <div><button id="close-button" class="bx bx-x"></button></div>
         <h1>Share your card</h1>
+        <p style="text-align: center;">Copy this link to share your card with another user</p>
         <input type="text" value="Share link" id="text-to-copy" readonly>
         <button id="copy-button" class="bx bx-copy">COPY</button>
         <div id="copy-message-div"></div>
     </div>
+
+    <div class="contact-modal" id="contact-modal">
+        <div><button id="contact-modal-close-button" class="bx bx-x"></button></div>
+        <h1>Card Details</h1>
+        
+        <p>Name</p>
+        <input type="text" id="contact-modal-name-input" readonly>
+        
+        <p>Email</p>
+        <input type="text" id="contact-modal-email-input" readonly>
+        
+        <p>Contact Number</p>
+        <input type="text" id="contact-modal-contact-input" readonly>
+        
+        <p id="contact-modal-designation-title">Designation</p>
+        <input type="text" id="contact-modal-designation-input" readonly>
+        
+        <p id="contact-modal-organization-title">Organization Name</p>
+        <input type="text" id="contact-modal-organization-input" readonly>
+        
+        <p id="contact-modal-address-title">Organization Address</p>
+        <input type="text" id="contact-modal-address-input" readonly>
+
+        <button id="add-contact-button">Add Contact</button>
+    </div>
+
     <div class="overlay" id="overlay"></div>
 
     <!-- </form> -->

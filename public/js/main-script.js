@@ -109,6 +109,11 @@ document.getElementById('close-button').addEventListener('click', function () {
     document.getElementById('details-modal').style.display = 'none';
 });
 
+document.getElementById('contact-modal-close-button').addEventListener('click', function () {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('contact-modal').style.display = 'none';
+});
+
 document.getElementById('copy-button').addEventListener('click', function () {
     const inputValue = document.getElementById('text-to-copy');
 
@@ -130,6 +135,14 @@ document.getElementById('copy-button').addEventListener('click', function () {
             messageDiv.style.color = "#9f0000";
             messageDiv.textContent = "Error in copying." + err;
         });
+});
+
+document.getElementById('add-contact-button').addEventListener('click', function () {
+    // TODO ----------------
+    alert("Adding card functionality pending. Please reach back in a moment.");
+
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('contact-modal').style.display = 'none';
 });
 
 function cardsNavClicked() {
@@ -244,7 +257,7 @@ function cardsNavClicked() {
                             input.value = link;
                             input.setAttribute('readonly', 'true');
                         });
-                    } 
+                    }
                     catch (error) {
                         console.error("Error: " + error);
                     }
@@ -285,12 +298,121 @@ function contactsNavClicked() {
         <div class="new-contact-div" id="new-contact-div">
             <img src="images/plus-purple.png"></img>
             <p>Add Contact</p>
+        </div>
+        <div class="load-link-div" id="load-link-div">
+            <p>Save a contact from link</p>
+            <input type="text" id="load-link-input">
+            <button id="load-contact-button">Load</button>
         </div>`;
 
         container.appendChild(first_container);
 
         document.getElementById('new-contact-div').addEventListener('click', function () {
             window.location.href = "/create-contact";
+        });
+
+        const loadLinkButton = document.getElementById('load-contact-button');
+        loadLinkButton.addEventListener('click', function () {
+            try {
+                const linkInput = document.getElementById('load-link-input');
+                const link = linkInput.value;
+
+                if (link == "") {
+                    alert("Please paste a link in the corresponding field.");
+                    return;
+                }
+
+                const data = extractCardDataFromLink(link);
+
+                const nameInput = document.getElementById('contact-modal-name-input');
+                const emailInput = document.getElementById('contact-modal-email-input');
+                const contactInput = document.getElementById('contact-modal-contact-input');
+                const designationInput = document.getElementById('contact-modal-designation-input');
+                const organizationInput = document.getElementById('contact-modal-organization-input');
+                const addressInput = document.getElementById('contact-modal-address-input');
+                const addContactButton = document.getElementById('add-contact-button');
+
+                if (data.user_id == userId) {
+                    if (data.organization_name == null)
+                        alert("It looks like you've provided a link for your personal card. You'll not be able to save it as your contacts.");
+                    else
+                        alert("It looks like you've provided a link for your work card. You'll not be able to save it as your contacts.");
+
+                    addContactButton.innerText = "Can't add";
+                    addContactButton.setAttribute('disabled', 'true');
+                }
+                else {
+                    addContactButton.innerText = "Add Contact";
+                    addContactButton.removeAttribute('disabled');
+                }
+
+                nameInput.removeAttribute('readonly');
+                nameInput.value = data.fullname;
+                nameInput.setAttribute('readonly', 'true');
+
+                emailInput.removeAttribute('readonly');
+                emailInput.value = data.email;
+                emailInput.setAttribute('readonly', 'true');
+
+                contactInput.removeAttribute('readonly');
+                contactInput.value = data.contact_number;
+                contactInput.setAttribute('readonly', 'true');
+
+                // console.log(nameInput);
+                // console.log(emailInput);
+                // console.log(contactInput);
+                // console.log(organizationInput);
+                // console.log(addressInput);
+
+                if (data.designation) {
+                    designationInput.style.display = 'block';
+                    document.getElementById('contact-modal-designation-title').style.display = 'block';
+
+                    designationInput.removeAttribute('readonly');
+                    designationInput.value = data.designation;
+                    designationInput.setAttribute('readonly', 'true');
+                }
+                else {
+                    // Hide the designation <input> and <p>
+                    designationInput.style.display = 'none';
+                    document.getElementById('contact-modal-designation-title').style.display = 'none';
+                }
+
+                if (data.organization_name) {
+                    organizationInput.style.display = 'block';
+                    document.getElementById('contact-modal-organization-title').style.display = 'block';
+
+                    organizationInput.removeAttribute('readonly');
+                    organizationInput.value = data.organization_name;
+                    organizationInput.setAttribute('readonly', 'true');
+                }
+                else {
+                    // Hide the organization name <input> and <p>
+                    organizationInput.style.display = 'none';
+                    document.getElementById('contact-modal-organization-title').style.display = 'none';
+                }
+
+                if (!data.organization_name)
+                    // Change the <p> text to only "Address"
+                    document.getElementById('contact-modal-address-title').innerText = "Address";
+                else
+                    document.getElementById('contact-modal-address-title').innerText = "Organization Address";
+
+                addressInput.removeAttribute('readonly');
+                addressInput.value = data.organization_address;
+                addressInput.setAttribute('readonly', 'true');
+
+                document.getElementById('overlay').style.display = 'block';
+                // Adding a delay to give a feel of data fetching from server
+                setTimeout(function() {
+                    document.getElementById('contact-modal').style.display = 'block';
+                }, 1000);
+            }
+            catch (error) {
+                alert("An error occured while trying to load the link data. The link might not be valid.");
+                console.error(error);
+            }
+
         });
 
         const headingDiv = document.createElement('div');
@@ -401,9 +523,9 @@ function decryptData(encryptedData) {
 
 function extractCardDataFromLink(shareableLink) {
     const encryptedData = shareableLink.split('=')[1];
-    const decryptedData = decryptData(encryptedData)
-    console.log('this is decrypted data, enjoy...!!!')
-    console.log(JSON.parse(decryptedData));
+    const decryptedData = decryptData(encryptedData);
+
+    return JSON.parse(decryptedData);
 }
 
 
